@@ -23,7 +23,7 @@ func validateCreditCardNumber(context *gin.Context) {
 	}
 
 	var r = response{Valid: luhn.Valid(payload.Number)}
-	context.IndentedJSON(http.StatusCreated, r)
+	context.JSON(http.StatusCreated, r)
 }
 
 func main() {
