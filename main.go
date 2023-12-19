@@ -15,7 +15,7 @@ type response struct {
 	Valid bool `json:"isValid"`
 }
 
-func handler(context *gin.Context) {
+func postHandler(context *gin.Context) {
 	var payload creditCard
 
 	if err := context.BindJSON(&payload); err != nil {
@@ -26,8 +26,14 @@ func handler(context *gin.Context) {
 	context.JSON(http.StatusCreated, r)
 }
 
+func getHandler(context *gin.Context) {
+	m := map[string]string{"message": "Welcome to this credit card validator API!"}
+	context.IndentedJSON(http.StatusOK, m)
+}
+
 func main() {
 	router := gin.Default()
-	router.POST("/credit-cards", handler)
+	router.GET("/", getHandler)
+	router.POST("/credit-cards", postHandler)
 	router.Run(":8000")
 }
