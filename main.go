@@ -27,8 +27,8 @@ func postHandler(context *gin.Context) {
 }
 
 func getHandler(context *gin.Context) {
-	m := map[string]string{"message": "Welcome to this credit card validator API!"}
-	context.IndentedJSON(http.StatusOK, m)
+	msg := map[string]string{"message": "Welcome to this credit card validator API!"}
+	context.IndentedJSON(http.StatusOK, msg)
 }
 
 func main() {
