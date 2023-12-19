@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/theplant/luhn"
@@ -35,5 +36,5 @@ func main() {
 	router := gin.Default()
 	router.GET("/", getHandler)
 	router.POST("/credit-cards", postHandler)
-	router.Run(":8080")
+	router.Run(":" + os.Getenv("PORT"))
 }
