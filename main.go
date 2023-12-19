@@ -18,12 +18,14 @@ type response struct {
 
 func postHandler(context *gin.Context) {
 	var payload creditCard
-
 	if err := context.BindJSON(&payload); err != nil {
 		return
 	}
-
-	var r = response{Valid: luhn.Valid(payload.Number)}
+	if payload.Number == 0 {
+		b := response{Valid: false}
+		context.JSON(http.StatusBadRequest, b)
+	}
+	r := response{Valid: luhn.Valid(payload.Number)}
 	context.JSON(http.StatusCreated, r)
 }
 
