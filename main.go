@@ -15,7 +15,7 @@ type response struct {
 	Valid bool `json:"isValid"`
 }
 
-func validateCreditCardNumber(context *gin.Context) {
+func handler(context *gin.Context) {
 	var payload creditCard
 
 	if err := context.BindJSON(&payload); err != nil {
@@ -28,6 +28,6 @@ func validateCreditCardNumber(context *gin.Context) {
 
 func main() {
 	router := gin.Default()
-	router.POST("/credit-cards", validateCreditCardNumber)
-	router.Run("localhost:8000")
+	router.POST("/credit-cards", handler)
+	router.Run(":8000")
 }
