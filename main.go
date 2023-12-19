@@ -24,6 +24,7 @@ func postHandler(context *gin.Context) {
 	if payload.Number == 0 {
 		b := response{Valid: false}
 		context.JSON(http.StatusBadRequest, b)
+		return
 	}
 	r := response{Valid: luhn.Valid(payload.Number)}
 	context.JSON(http.StatusCreated, r)
